@@ -1,7 +1,11 @@
 <script>
 import axios from 'axios';
+import AppPokemonCard from './AppPokemonCard.vue'
 
 export default {
+    components: {
+        AppPokemonCard
+    },
     data() {
         return {
             pokemonList: []
@@ -9,7 +13,7 @@ export default {
     },
     mounted() {
         axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons').then((response) => {
-            this.pokemonList = response.data.results;
+            this.pokemonList = response.data.docs;
         })
     }
 }
@@ -21,7 +25,7 @@ export default {
                 <div class="container">
                     <div class="row">
                         <div v-for="(pokemon, index) in pokemonList" :key="pokemon.id" class="col-6 col-md-4">
-                            {{pokemon.name}}
+                            <AppPokemonCard :myPokemon="pokemon" />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <script>
-import axios from 'axios';
 import AppPokemonCard from './AppPokemonCard.vue'
+import { store } from '../store.js'
 
 export default {
     components: {
@@ -8,13 +8,8 @@ export default {
     },
     data() {
         return {
-            pokemonList: []
+            store
         }
-    },
-    mounted() {
-        axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons').then((response) => {
-            this.pokemonList = response.data.docs;
-        })
     }
 }
 </script>
@@ -22,9 +17,9 @@ export default {
     <div class="container">
         <div class="row">
             <div class="col back">
-                <div class="container">
+                <div class="container backgr">
                     <div class="row">
-                        <div v-for="(pokemon, index) in pokemonList" :key="pokemon.id" class="col-6 col-md-4">
+                        <div v-for="(pokemon, index) in store.pokemonList" :key="pokemon.id" class="col-3">
                             <AppPokemonCard :myPokemon="pokemon" />
                         </div>
                     </div>
@@ -40,5 +35,9 @@ export default {
     border-radius: 30px;
     height: 700px;
     margin-top: 20px;
+}
+
+.backgr {
+    background-color: rgb(73, 72, 72);
 }
 </style>

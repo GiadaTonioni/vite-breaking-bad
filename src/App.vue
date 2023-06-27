@@ -3,12 +3,15 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppPokemonList from './components/AppPokemonList.vue';
 
+import AppSearchBar from './components/AppSearchBar.vue';
+
 import { store } from './store.js';
 
 export default {
   components: {
     AppHeader,
-    AppPokemonList
+    AppPokemonList,
+    AppSearchBar
   },
   data() {
     return {
@@ -25,6 +28,7 @@ export default {
 <template lang="">
   <div>
     <AppHeader/>
+    <AppSearchBar/>
     <AppPokemonList/>
   </div>
 </template>
